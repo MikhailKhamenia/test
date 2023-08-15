@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список доступных книг</title>
+        <link type="text/css" href="{% static 'library/css/style.css' %}" rel="stylesheet" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="shortcut icon" href="{% static 'men/images/main.ico' %}" type="image/x-icon"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h1>Список доступных книг</h1>
+    <ul>
+        {% for book in books %}
+            <li>{{ book.title }} {{ book.author }}  <a href="{% url 'take_book' book.id %}">Взять книгу</a></li>
+        {% if book.photo %}
+	<p><img class="img-article-left thumb" src="{{book.photo.url}}"></p>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</body>
+</html>

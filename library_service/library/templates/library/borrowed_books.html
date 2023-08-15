@@ -1,0 +1,29 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Взятые книги</title>
+    <link type="text/css" href="{% static 'library/css/style.css' %}" rel="stylesheet" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+    <h1>Книги на руках</h1>
+<ul>
+  {% for borrowing in borrowings %}
+    <li>{{ borrowing.book.reader }} - {{ borrowing.book.title }} - {{ borrowing.book.code }} </li>
+    <li>Due Date: {{ borrowing.date_taken }}</li>
+    <li>
+      <form action="{% url 'return_book' book_id=borrowing.book.id %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="book_code" placeholder="Enter book code" required>
+        <button type="submit">Вернуть</button>
+      </form>
+    </li>
+  {% empty %}
+    <li>Нет взятых книг</li>
+  {% endfor %}
+</ul>
+
+</body>
+</html>

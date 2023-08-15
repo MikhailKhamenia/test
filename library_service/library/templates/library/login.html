@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Авторизация</title>
+        <link type="text/css" href="{% static 'library/css/style.css' %}" rel="stylesheet" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+    <h1>Авторизация</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="last_name">Фамилия:</label>
+        <input type="text" name="last_name" id="last_name">
+        <button type="submit">Войти</button>
+        <button type="submit"><a href="{% url 'add_reader' %}">Регистрация</a></button>
+    </form>
+</body>
+</html>
